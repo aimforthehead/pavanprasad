@@ -1,0 +1,98 @@
+{
+  "theme": "light",
+  "archetype": "1 (Organic & Earthy / Editorial Minimalist)",
+  "typography": {
+    "heading": "Playfair Display",
+    "body": "Geist Sans",
+    "accent": "Geist Mono",
+    "scale": {
+      "h1": "text-5xl sm:text-6xl lg:text-7xl tracking-tighter leading-none",
+      "h2": "text-4xl sm:text-5xl tracking-tight leading-tight",
+      "h3": "text-2xl sm:text-3xl tracking-tight",
+      "body": "text-base sm:text-lg leading-relaxed",
+      "overline": "text-xs uppercase tracking-[0.2em] font-medium"
+    },
+    "rules": "Never bold headers indiscriminately. Use font-light or font-black to create tension. Accents must always be uppercase Geist Mono."
+  },
+  "colors": {
+    "background": "#f8f6f1",
+    "surface": "#ffffff",
+    "surface_secondary": "#e8e4d8",
+    "text_primary": "#0a0a0a",
+    "text_secondary": "#5a5a5a",
+    "accent": "#ff3d00",
+    "border": "#d8d4c8"
+  },
+  "layout": {
+    "spacing": "Generous (p-8 to p-32). Let the typography breathe.",
+    "grid": "Asymmetric editorial columns. Avoid rigid, equal-width grids.",
+    "alignment": "Optical alignment. Left-align dense text; hero or pull quotes can be center-aligned to create visual impact."
+  },
+  "motion": {
+    "scrolling": "Lenis smooth scroll is MANDATORY for premium feel.",
+    "animations": "Framer Motion staggered character/word reveals on scroll. Parallax on images.",
+    "cursor": "Custom magnetic cursor using Framer Motion. Use mix-blend-mode: difference so it contrasts perfectly with the cream background."
+  },
+  "components": {
+    "hero": {
+      "description": "Minimalist, massive editorial typography 'Pavan & Satyam', overlaid on or positioned next to an interactive 3D element. It feels raw, confident, and high-end.",
+      "libraries": ["react-three-fiber", "drei", "framer-motion"]
+    },
+    "marquee": {
+      "description": "Slow, continuous drift using Geist Mono, text-sm, uppercase. Extremely generous spacing (gap-24). Content: 'BUILDERS / BANGALORE / YK VIBECON / CRAFTING EXPERIENCES /'. Background: transparent or slightly darker cream.",
+      "libraries": ["react-fast-marquee"]
+    },
+    "projects": {
+      "description": "Anti-Card Layout. An elegant, massive list of project names (Argonaut, Lucid3D, Hoomanly, Just Us) in Playfair Display. On hover or click, the list item expands (Framer Motion AnimatePresence) to reveal the project image, minimal details, and an orange-red (#ff3d00) action link.",
+      "libraries": ["framer-motion"]
+    },
+    "about_quote": {
+      "description": "Massive pull quote interlude in Playfair Display italic. Layout: highly asymmetric, balanced by tiny supporting Geist Mono text and a 'Contact' button.",
+      "libraries": ["framer-motion"]
+    },
+    "footer": {
+      "description": "Massive CTA. E.g., 'LET'S BUILD.' Custom cursor magnetic pull effect. Inverted contrast section (Dark ink #0a0a0a background with cream text) to cap off the experience.",
+      "libraries": []
+    }
+  },
+  "3d_strategy": {
+    "library": "react-three-fiber + @react-three/drei",
+    "implementation": "Render a minimalist, slowly rotating wireframe geometric shape (e.g., Icosahedron or Torus Knot) in the hero section. Use a dark ink (#0a0a0a) basic material with wireframe={true}. Add subtle interactivity tied to mouse movement to make it feel alive without cluttering the page."
+  },
+  "media": {
+    "project_placeholders": [
+      {
+        "category": "argonaut",
+        "url": "https://images.unsplash.com/photo-1550851067-48d3dd68842e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2OTV8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMGFyY2hpdGVjdHVyZSUyMGFyY2hpdGVjdHVyZSUyMG1pbmltYWx8ZW58MHx8fHwxNzc1MzI5MzkwfDA&ixlib=rb-4.1.0&q=85",
+        "alt": "Argonaut hardware SaaS"
+      },
+      {
+        "category": "lucid3d",
+        "url": "https://images.pexels.com/photos/12143436/pexels-photo-12143436.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "alt": "Lucid3D printing and fabrication"
+      },
+      {
+        "category": "hoomanly",
+        "url": "https://images.unsplash.com/photo-1747727568150-444573cd705a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2OTV8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGFyY2hpdGVjdHVyZSUyMGFyY2hpdGVjdHVyZSUyMG1pbmltYWx8ZW58MHx8fHwxNzc1MzI5MzkwfDA&ixlib=rb-4.1.0&q=85",
+        "alt": "Hoomanly anonymous social platform"
+      },
+      {
+        "category": "justus",
+        "url": "https://images.unsplash.com/photo-1747726777055-b15fec0a6b2f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2OTV8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGFyY2hpdGVjdHVyZSUyMGFyY2hpdGVjdHVyZSUyMG1pbmltYWx8ZW58MHx8fHwxNzc1MzI5MzkwfDA&ixlib=rb-4.1.0&q=85",
+        "alt": "Just Us personal WebRTC app"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Strictly adhere to the cream background (#f8f6f1) and dark ink text (#0a0a0a). Only use orange-red (#ff3d00) for very specific, high-intent interactions (e.g., hover states on project links, or tiny accents).",
+    "Use Playfair Display for massive, impactful headlines (H1/H2). Use Geist Sans for body text and Geist Mono for tiny accent labels/overlines.",
+    "Implement a custom cursor using Framer Motion. Make it a simple circle that expands and turns into a 'View' label or shifts color when hovering over interactive elements. Use mix-blend-mode: difference for elegance.",
+    "Implement Lenis for smooth scrolling (`@studio-freight/lenis`). This is critical for the premium editorial feel.",
+    "Hero section MUST include a subtle 3D element using `@react-three/fiber` and `@react-three/drei`. A dark wireframe geometry (Icosahedron/Torus) that rotates and slightly follows the mouse is perfect.",
+    "Add a Marquee strip (`react-fast-marquee`) immediately after the hero, using Geist Mono.",
+    "Projects showcase should NOT use standard Shadcn cards. Build a custom Framer Motion accordion or hover-reveal list where clicking/hovering a massive project title drops down the image and details.",
+    "The About section should feature a massive pull quote in Playfair italic. Let the typography dominate the viewport.",
+    "Ensure all interactive elements have `data-testid` attributes (e.g., `data-testid=\"project-argonaut-link\"`).",
+    "Avoid typical SaaS cards. Use flat, raw editorial layouts with minimal borders or no borders at all. Let negative space define boundaries."
+  ]
+}
