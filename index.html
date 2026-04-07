@@ -124,10 +124,12 @@
 
     .loader-sub {
       font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: .28em;
+      font-size: 16px;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      color: rgba(244, 239, 230, .35);
+      color: rgba(244, 239, 230, 1.0);
+      margin-top: -4px;
+      margin-bottom: 12px;
       opacity: 0;
       transform: translateY(14px)
     }
@@ -1649,10 +1651,10 @@
     gsap.registerPlugin(ScrollTrigger);
     window.addEventListener('load', () => {
       gsap.timeline()
-        .to('.loader-name', { opacity: 1, y: 0, duration: .7, ease: 'power3.out' })
-        .to('.loader-sub', { opacity: 1, y: 0, duration: .5, ease: 'power3.out' }, '-=.3')
-        .to('.loader-bar', { width: '100%', duration: 1.4, ease: 'power2.inOut' }, '-=.2')
-        .to('#loader', { opacity: 0, duration: .6, ease: 'power2.inOut', onComplete: () => { document.getElementById('loader').style.display = 'none'; animateHero() } }, '+= .1');
+        .to('.loader-name', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' })
+        .to('.loader-sub', { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3')
+        .to('.loader-bar', { width: '100%', duration: 1.4, ease: 'power2.inOut' }, '-=0.2')
+        .to('#loader', { opacity: 0, duration: 0.6, ease: 'power2.inOut', onComplete: () => { document.getElementById('loader').style.display = 'none'; animateHero() } }, '+= 0.1');
     });
 
     function animateHero() {
