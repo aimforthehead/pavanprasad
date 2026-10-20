@@ -1155,6 +1155,17 @@
       }
     }
   </style>
+  <style>
+    .proj-preview {
+      position: fixed; left: 0; top: 0; width: 340px; aspect-ratio: 16 / 10; z-index: 900;
+      pointer-events: none; opacity: 0; border: 1px solid rgba(26, 46, 34, .15);
+      box-shadow: 0 18px 40px rgba(26, 46, 34, .18); background: #f3eee6 center / cover no-repeat;
+      transform: translate3d(0, 0, 0) scale(.96); transition: opacity .25s ease, transform .25s ease;
+    }
+    .proj-preview.on { opacity: 1; }
+    @media (hover: none), (max-width: 900px) { .proj-preview { display: none; } }
+    @media (prefers-reduced-motion: reduce) { .proj-preview { transition: none; } }
+  </style>
 </head>
 
 <body>
@@ -1257,7 +1268,7 @@
 
       <!-- Project 1: Argonaut -->
       <div class="project-item" data-testid="project-argonaut">
-        <div class="project-row" onclick="toggleProj(this)">
+        <div class="project-row" onclick="toggleProj(this)" data-preview="assets/projects/argonaut/preview.jpg">
           <div class="proj-num">01</div>
           <div class="proj-info">
             <div class="proj-name">Argonaut<span class="proj-live">Live</span></div>
@@ -1304,7 +1315,7 @@
 
       <!-- Project 2: MAGIIC Battery Monitoring -->
       <div class="project-item" data-testid="project-magiic">
-        <div class="project-row" onclick="toggleProj(this)">
+        <div class="project-row" onclick="toggleProj(this)" data-preview="assets/projects/magiic/preview.jpg">
           <div class="proj-num">02</div>
           <div class="proj-info">
             <div class="proj-name"><em>MAGIIC</em> Battery Monitoring<span class="proj-live">Live</span></div>
@@ -1440,7 +1451,7 @@
 
       <!-- Project 5: Hoomanly -->
       <div class="project-item" data-testid="project-hoomanly">
-        <div class="project-row" onclick="toggleProj(this)">
+        <div class="project-row" onclick="toggleProj(this)" data-preview="assets/projects/hoomanly/preview.jpg">
           <div class="proj-num">05</div>
           <div class="proj-info">
             <div class="proj-name">Hoomanly<span class="proj-live">Live</span></div>
@@ -1535,9 +1546,9 @@
   <section class="about-section" id="about">
     <div class="reveal">
       <h2 class="about-heading">One builder.<br>Always shipping.</h2>
-      <p class="about-body">I'm <strong>Pavan Prasad</strong> - a Forward Deployed Engineer based in Bengaluru. I spend my days
-        helping enterprise customers go from "we need this" to "it works," and my nights shipping products that started
-        as a problem I couldn't stop thinking about.</p>
+      <p class="about-body">I'm <strong>Pavan Prasad</strong> - a Forward Deployed Engineer based in Bengaluru. I work US hours,
+        so my nights go to helping enterprise customers get from "we need this" to "it works," and my days go to
+        shipping products that started as a problem I couldn't stop thinking about.</p>
       <p class="about-body">Right now I'm a Forward Deployed Engineer at <strong>Moxo</strong>, an AI orchestration platform. I work
         embedded with enterprise customers and I have commit access to the product: I ship customer-driven fixes and
         roadmap features to the core codebase, build the integrations, and configure the AI agents that take
@@ -1716,6 +1727,41 @@
         }
       });
     });
+  </script>
+  <script>
+    (function () {
+      if (!window.matchMedia('(hover: hover)').matches) return;
+      var box = document.createElement('div');
+      box.className = 'proj-preview';
+      document.body.appendChild(box);
+      var x = 0, y = 0;
+      function place() {
+        var w = box.offsetWidth, h = box.offsetHeight;
+        var left = x + 28, top = y - h / 2;
+        if (left + w > window.innerWidth - 16) left = x - w - 28;
+        top = Math.max(16, Math.min(top, window.innerHeight - h - 16));
+        box.style.transform = 'translate3d(' + left + 'px,' + top + 'px,0)';
+      }
+      document.querySelectorAll('.project-row[data-preview]').forEach(function (row) {
+        var src = row.getAttribute('data-preview');
+        new Image().src = src;
+        row.addEventListener('mouseenter', function (e) {
+          if (row.closest('.project-item').classList.contains('open')) return;
+          box.style.backgroundImage = 'url("' + src + '")';
+          x = e.clientX; y = e.clientY; place(); box.classList.add('on');
+        });
+        row.addEventListener('mousemove', function (e) { x = e.clientX; y = e.clientY; place(); });
+        row.addEventListener('mouseleave', function () { box.classList.remove('on'); });
+        row.addEventListener('click', function () { box.classList.remove('on'); });
+      });
+      window.addEventListener('scroll', function () {
+        var el = document.elementFromPoint(x, y);
+        var row = el && el.closest('.project-row[data-preview]');
+        if (!row || row.closest('.project-item').classList.contains('open')) { box.classList.remove('on'); return; }
+        box.style.backgroundImage = 'url("' + row.getAttribute('data-preview') + '")';
+        place();
+      }, { passive: true });
+    })();
   </script>
 </body>
 
